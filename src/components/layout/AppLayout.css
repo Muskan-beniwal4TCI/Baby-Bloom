@@ -13,7 +13,7 @@
   transition: margin-left var(--transition-normal);
 }
 
-.sidebar.collapsed+.app-main {
+.app-main.collapsed {
   margin-left: 60px;
 }
 
@@ -25,10 +25,7 @@
   font-size: var(--font-size-2xl);
   font-weight: 700;
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-dark) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent);
 }
 
 .page-subtitle {

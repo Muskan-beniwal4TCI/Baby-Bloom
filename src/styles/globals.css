@@ -1,25 +1,25 @@
 :root {
-  /* Baby Bloom Color Palette - Material You Inspired */
-  --primary: #FFB4D5;
-  --primary-dark: #FF8CB8;
-  --primary-light: #FFE4EF;
-  --secondary: #A8D8EA;
-  --secondary-dark: #7AB8D3;
-  --secondary-light: #D6EFF7;
-  --accent: #FFD97D;
-  --accent-dark: #FFB84D;
-  --background: #FFF8FA;
+  /* Baby Bloom Color Palette - White & Midnight Blue Theme */
+  --primary: #5568C9;
+  --primary-dark: #3B4DA8;
+  --primary-light: #A8B3F0;
+  --secondary: #6B7FDA;
+  --secondary-dark: #4857B8;
+  --secondary-light: #9FACF0;
+  --accent: #5568C9;
+  --accent-dark: #3B4DA8;
+  --background: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-variant: #FFF0F5;
-  --error: #FF6B9D;
+  --surface-variant: #F2F5FF;
+  --error: #D9534F;
   --success: #8FD5A6;
   --warning: #FFBF69;
   --text-primary: #2D2D2D;
-  --text-secondary: #6B6B6B;
-  --text-tertiary: #9E9E9E;
+  --text-secondary: #4C4C4C;
+  --text-tertiary: #7A7A7A;
   --text-on-primary: #FFFFFF;
-  --border: #F0E6EA;
-  --shadow: rgba(255, 180, 213, 0.15);
+  --border: #D9E2FF;
+  --shadow: rgba(13, 27, 76, 0.18);
   
   /* Spacing - 8pt grid */
   --spacing-xs: 4px;
@@ -37,9 +37,9 @@
   --radius-full: 9999px;
   
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(255, 180, 213, 0.12);
-  --shadow-md: 0 4px 12px rgba(255, 180, 213, 0.15);
-  --shadow-lg: 0 8px 24px rgba(255, 180, 213, 0.18);
+  --shadow-sm: 0 1px 3px rgba(13, 27, 76, 0.12);
+  --shadow-md: 0 4px 12px rgba(13, 27, 76, 0.15);
+  --shadow-lg: 0 8px 24px rgba(13, 27, 76, 0.18);
   
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

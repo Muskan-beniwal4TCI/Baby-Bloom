@@ -4,7 +4,7 @@
   top: 0;
   right: 0;
   height: var(--topbar-height);
-  background: white;
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -17,6 +17,19 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.app-logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 10px rgba(13, 27, 76, 0.18));
 }
 
 .app-name {
@@ -42,14 +55,45 @@
   height: 40px;
   background: none;
   border: none;
-  font-size: 24px;
   cursor: pointer;
   border-radius: var(--radius-md);
   transition: background var(--transition-fast);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
 .topbar-menu-btn:hover {
   background: var(--surface-variant);
+}
+
+.topbar-menu-icon {
+  position: relative;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 1px;
+  transition: background var(--transition-fast);
+}
+
+.topbar-menu-icon::before,
+.topbar-menu-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 1px;
+  transition: background var(--transition-fast);
+}
+
+.topbar-menu-icon::before {
+  top: -6px;
+}
+
+.topbar-menu-icon::after {
+  top: 6px;
 }
 
 .topbar-search {
@@ -180,7 +224,7 @@
   }
 
   .topbar-menu-btn {
-    display: block;
+    display: flex;
   }
 
   .company-name {

@@ -44,6 +44,40 @@
   background: var(--primary-light);
 }
 
+.btn-secondary.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--surface-variant);
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+.btn:disabled span[aria-hidden="true"] {
+  opacity: 0.7;
+}
+
+.btn:disabled:hover {
+  transform: none;
+}
+
+.page-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.page-title-icon {
+  font-size: var(--font-size-xl);
+  line-height: 1;
+}
+
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 400px;

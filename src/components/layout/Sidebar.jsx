@@ -1,66 +1,95 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+﻿import { Link, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
-const Sidebar = ({ isOpen, onClose }) => {
+const Sidebar = ({ isOpen, isCollapsed, onHoverChange, onClose }) => {
   const location = useLocation();
-  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navItems = [
     {
       section: 'Overview',
       items: [
-        { path: '/', icon: '🏠', label: 'Dashboard' },
-        { path: '/timeline', icon: '📅', label: 'Timeline' },
-      ]
+        { path: '/', icon: '📊', label: 'Dashboard' },
+        { path: '/timeline', icon: '🕒', label: 'Timeline' },
+      ],
     },
     {
       section: 'Baby Care',
       items: [
         { path: '/feeding', icon: '🍼', label: 'Feeding', badge: 3 },
-        { path: '/sleep', icon: '😴', label: 'Sleep' },
+        { path: '/sleep', icon: '🌙', label: 'Sleep' },
         { path: '/diaper', icon: '🧷', label: 'Diaper Changes' },
-        { path: '/health', icon: '💊', label: 'Health & Medical' },
-        { path: '/growth', icon: '📏', label: 'Growth Tracking' },
-      ]
+        { path: '/health', icon: '🩺', label: 'Health & Medical' },
+        { path: '/growth', icon: '📈', label: 'Growth Tracking' },
+      ],
     },
     {
       section: 'Development',
       items: [
-        { path: '/milestones', icon: '⭐', label: 'Milestones' },
+        { path: '/milestones', icon: '🎯', label: 'Milestones' },
         { path: '/activities', icon: '🎨', label: 'Activities' },
         { path: '/photos', icon: '📸', label: 'Photo Timeline' },
-      ]
+      ],
     },
     {
-      section: 'Mother\'s Care',
+      section: "Mother's Care",
       items: [
-        { path: '/mother-health', icon: '💝', label: 'Wellness' },
+        { path: '/mother-health', icon: '💗', label: 'Wellness' },
         { path: '/breastfeeding', icon: '🤱', label: 'Breastfeeding' },
-      ]
+      ],
     },
     {
       section: 'Learn',
       items: [
         { path: '/education', icon: '📚', label: 'Education Hub' },
         { path: '/tips', icon: '💡', label: 'Tips & Guides' },
-        { path: '/recipes', icon: '🥘', label: 'Meal Recipes' },
-      ]
-    }
+        { path: '/recipes', icon: '🥣', label: 'Meal Recipes' },
+      ],
+    },
   ];
 
-  const isActive = (path) => {
-    return location.pathname === path;
+  const isActive = (path) => location.pathname === path;
+
+  const shouldIgnoreHover = () =>
+    typeof window !== 'undefined' && window.innerWidth <= 768;
+
+  const handleMouseEnter = () => {
+    if (shouldIgnoreHover()) {
+      return;
+    }
+    onHoverChange?.(false);
+  };
+
+  const handleMouseLeave = () => {
+    if (shouldIgnoreHover()) {
+      return;
+    }
+    onHoverChange?.(true);
+  };
+
+  const handleFocus = () => {
+    if (shouldIgnoreHover()) {
+      return;
+    }
+    onHoverChange?.(false);
+  };
+
+  const handleBlur = (event) => {
+    if (shouldIgnoreHover()) {
+      return;
+    }
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      onHoverChange?.(true);
+    }
   };
 
   return (
-    <aside className={`sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
-      <div className="sidebar-header">
-        <button className="collapse-btn" onClick={() => setIsCollapsed(!isCollapsed)}>
-          {isCollapsed ? '➡️' : '⬅️'}
-        </button>
-      </div>
-
+    <aside
+      className={`sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    >
       <nav className="sidebar-nav">
         {navItems.map((section) => (
           <div key={section.section} className="nav-section">
@@ -71,10 +100,18 @@ const Sidebar = ({ isOpen, onClose }) => {
                 to={item.path}
                 className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
                 onClick={() => window.innerWidth <= 768 && onClose?.()}
+                title={item.label}
+                aria-label={item.label}
               >
-                <span className="nav-item-icon">{item.icon}</span>
-                {!isCollapsed && <span className="nav-item-label">{item.label}</span>}
-                {!isCollapsed && item.badge && <span className="nav-item-badge">{item.badge}</span>}
+                <span className="nav-item-icon" aria-hidden="true">{item.icon}</span>
+                <span className="nav-item-label" aria-hidden={isCollapsed}>
+                  {item.label}
+                </span>
+                {item.badge && (
+                  <span className="nav-item-badge" aria-hidden={isCollapsed}>
+                    {item.badge}
+                  </span>
+                )}
               </Link>
             ))}
           </div>
@@ -82,9 +119,11 @@ const Sidebar = ({ isOpen, onClose }) => {
       </nav>
 
       <div className="sidebar-footer">
-        <button className="sidebar-footer-btn">
-          <span>⚙️</span>
-          <span>Settings</span>
+        <button className="sidebar-footer-btn" title="Settings" aria-label="Settings">
+          <span aria-hidden="true">⚙️</span>
+          <span className="sidebar-footer-label" aria-hidden={isCollapsed}>
+            Settings
+          </span>
         </button>
       </div>
     </aside>
