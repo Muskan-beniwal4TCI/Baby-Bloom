@@ -61,6 +61,92 @@
   --topbar-height: 64px;
 }
 
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary: #6B7FDA;
+  --primary-dark: #5568C9;
+  --primary-light: #3B4DA8;
+  --secondary: #8B95FA;
+  --secondary-dark: #6B7FDA;
+  --secondary-light: #5568C9;
+  --accent: #6B7FDA;
+  --accent-dark: #5568C9;
+  --background: #0F1419;
+  --surface: #1A1F2E;
+  --surface-variant: #252D3D;
+  --error: #FF6B6B;
+  --success: #51CF66;
+  --warning: #FFB84D;
+  --text-primary: #E8EAED;
+  --text-secondary: #B8BBBE;
+  --text-tertiary: #8A8E91;
+  --text-on-primary: #FFFFFF;
+  --border: #2D3748;
+  --shadow: rgba(0, 0, 0, 0.5);
+  
+  /* Shadows for dark theme */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Accent color themes */
+[data-accent="blue"] {
+  --primary: #5568C9;
+  --primary-dark: #3B4DA8;
+  --primary-light: #A8B3F0;
+  --accent: #5568C9;
+  --accent-dark: #3B4DA8;
+}
+
+[data-accent="pink"] {
+  --primary: #F472B6;
+  --primary-dark: #DB2777;
+  --primary-light: #FBCFE8;
+  --accent: #F472B6;
+  --accent-dark: #DB2777;
+}
+
+[data-accent="purple"] {
+  --primary: #A855F7;
+  --primary-dark: #7C3AED;
+  --primary-light: #D8B4FE;
+  --accent: #A855F7;
+  --accent-dark: #7C3AED;
+}
+
+[data-accent="green"] {
+  --primary: #10B981;
+  --primary-dark: #059669;
+  --primary-light: #A7F3D0;
+  --accent: #10B981;
+  --accent-dark: #059669;
+}
+
+[data-accent="orange"] {
+  --primary: #F97316;
+  --primary-dark: #EA580C;
+  --primary-light: #FED7AA;
+  --accent: #F97316;
+  --accent-dark: #EA580C;
+}
+
+[data-accent="red"] {
+  --primary: #EF4444;
+  --primary-dark: #DC2626;
+  --primary-light: #FCA5A5;
+  --accent: #EF4444;
+  --accent-dark: #DC2626;
+}
+
+[data-accent="slate"] {
+  --primary: #1f2937;
+  --primary-dark: #111827;
+  --primary-light: #6B7280;
+  --accent: #1f2937;
+  --accent-dark: #111827;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -105,6 +191,7 @@ button {
   border: none;
   outline: none;
   transition: all var(--transition-normal);
+  color: inherit; /* Make buttons inherit text color so dark mode stays readable */
 }
 
 button:disabled {

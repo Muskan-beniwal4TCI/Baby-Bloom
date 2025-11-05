@@ -119,12 +119,12 @@ const Sidebar = ({ isOpen, isCollapsed, onHoverChange, onClose }) => {
       </nav>
 
       <div className="sidebar-footer">
-        <button className="sidebar-footer-btn" title="Settings" aria-label="Settings">
+        <Link to="/settings" className="sidebar-footer-btn" title="Settings" aria-label="Settings">
           <span aria-hidden="true">⚙️</span>
           <span className="sidebar-footer-label" aria-hidden={isCollapsed}>
             Settings
           </span>
-        </button>
+        </Link>
       </div>
     </aside>
   );

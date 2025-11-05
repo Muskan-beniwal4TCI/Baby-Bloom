@@ -16,6 +16,7 @@ import Education from './pages/Education';
 import Tips from './pages/Tips';
 import Recipes from './pages/Recipes';
 import Timeline from './pages/Timeline';
+import Settings from './pages/Settings';
 
 // For UI-first workflow: skip authentication gating for now and open main UI directly
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="education" element={<Education />} />
         <Route path="tips" element={<Tips />} />
         <Route path="recipes" element={<Recipes />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>
   );
