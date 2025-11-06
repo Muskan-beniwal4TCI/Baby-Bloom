@@ -1,48 +1,46 @@
 ﻿import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import './Sidebar.css';
 
 const Sidebar = ({ isOpen, isCollapsed, onHoverChange, onClose }) => {
   const location = useLocation();
+  const [moreExpanded, setMoreExpanded] = useState(false);
 
   const navItems = [
     {
       section: 'Overview',
       items: [
         { path: '/', icon: '📊', label: 'Dashboard' },
-        { path: '/timeline', icon: '🕒', label: 'Timeline' },
       ],
     },
     {
-      section: 'Baby Care',
+      section: 'Daily Tracking',
       items: [
-        { path: '/feeding', icon: '🍼', label: 'Feeding', badge: 3 },
+        { path: '/feeding', icon: '🍼', label: 'Feeding' },
         { path: '/sleep', icon: '🌙', label: 'Sleep' },
-        { path: '/diaper', icon: '🧷', label: 'Diaper Changes' },
-        { path: '/health', icon: '🩺', label: 'Health & Medical' },
-        { path: '/growth', icon: '📈', label: 'Growth Tracking' },
+        { path: '/diaper', icon: '🧷', label: 'Diaper' },
+        { path: '/health', icon: '🩺', label: 'Health' },
       ],
     },
     {
-      section: 'Development',
+      section: 'Baby Development',
       items: [
-        { path: '/milestones', icon: '🎯', label: 'Milestones' },
+        { path: '/growth', icon: '📈', label: 'Growth' },
+        { path: '/milestones', icon: '�', label: 'Milestones' },
+        { path: '/photos', icon: '📸', label: 'Photos' },
+      ],
+    },
+    {
+      section: 'More',
+      items: [
+        { path: '/reminders', icon: '⏰', label: 'Reminders' },
+        { path: '/timeline', icon: '🕒', label: 'Timeline' },
         { path: '/activities', icon: '🎨', label: 'Activities' },
-        { path: '/photos', icon: '📸', label: 'Photo Timeline' },
-      ],
-    },
-    {
-      section: "Mother's Care",
-      items: [
-        { path: '/mother-health', icon: '💗', label: 'Wellness' },
+        { path: '/mother-health', icon: '💗', label: 'Mother Wellness' },
         { path: '/breastfeeding', icon: '🤱', label: 'Breastfeeding' },
-      ],
-    },
-    {
-      section: 'Learn',
-      items: [
-        { path: '/education', icon: '📚', label: 'Education Hub' },
-        { path: '/tips', icon: '💡', label: 'Tips & Guides' },
-        { path: '/recipes', icon: '🥣', label: 'Meal Recipes' },
+        { path: '/education', icon: '📚', label: 'Education' },
+        { path: '/tips', icon: '💡', label: 'Tips' },
+        { path: '/recipes', icon: '🥣', label: 'Recipes' },
       ],
     },
   ];
@@ -93,27 +91,59 @@ const Sidebar = ({ isOpen, isCollapsed, onHoverChange, onClose }) => {
       <nav className="sidebar-nav">
         {navItems.map((section) => (
           <div key={section.section} className="nav-section">
-            <div className="nav-section-title">{section.section}</div>
-            {section.items.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
-                onClick={() => window.innerWidth <= 768 && onClose?.()}
-                title={item.label}
-                aria-label={item.label}
-              >
-                <span className="nav-item-icon" aria-hidden="true">{item.icon}</span>
-                <span className="nav-item-label" aria-hidden={isCollapsed}>
-                  {item.label}
-                </span>
-                {item.badge && (
-                  <span className="nav-item-badge" aria-hidden={isCollapsed}>
-                    {item.badge}
+            {section.section === 'More' ? (
+              <>
+                <button
+                  className="nav-section-title nav-section-toggle"
+                  onClick={() => setMoreExpanded(!moreExpanded)}
+                  aria-expanded={moreExpanded}
+                >
+                  <span>{section.section}</span>
+                  <span className={`toggle-icon ${moreExpanded ? 'expanded' : ''}`}>
+                    {moreExpanded ? '▼' : '▶'}
                   </span>
-                )}
-              </Link>
-            ))}
+                </button>
+                {moreExpanded && section.items.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
+                    onClick={() => window.innerWidth <= 768 && onClose?.()}
+                    title={item.label}
+                    aria-label={item.label}
+                  >
+                    <span className="nav-item-icon" aria-hidden="true">{item.icon}</span>
+                    <span className="nav-item-label" aria-hidden={isCollapsed}>
+                      {item.label}
+                    </span>
+                  </Link>
+                ))}
+              </>
+            ) : (
+              <>
+                <div className="nav-section-title">{section.section}</div>
+                {section.items.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`nav-item ${isActive(item.path) ? 'active' : ''}`}
+                    onClick={() => window.innerWidth <= 768 && onClose?.()}
+                    title={item.label}
+                    aria-label={item.label}
+                  >
+                    <span className="nav-item-icon" aria-hidden="true">{item.icon}</span>
+                    <span className="nav-item-label" aria-hidden={isCollapsed}>
+                      {item.label}
+                    </span>
+                    {item.badge && (
+                      <span className="nav-item-badge" aria-hidden={isCollapsed}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </>
+            )}
           </div>
         ))}
       </nav>

@@ -25,6 +25,66 @@
   margin-bottom: 0;
 }
 
+.dashboard-welcome strong {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.getting-started-banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-lg);
+  animation: slideDown 0.5s ease;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.banner-icon {
+  font-size: 48px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.banner-content h3 {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-xl);
+}
+
+.banner-content p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -43,11 +103,35 @@
   min-height: 120px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .stat-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+}
+
+.stat-card.empty {
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.stat-card.empty:hover {
+  opacity: 1;
+  border-style: solid;
+}
+
+.stat-cta {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--primary);
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.stat-card.empty:hover .stat-cta {
+  opacity: 1;
 }
 
 .stat-card.feeding {
@@ -277,6 +361,7 @@
   transition: all var(--transition-normal);
   box-shadow: var(--shadow-sm);
   color: var(--text-primary);
+  cursor: pointer;
 }
 
 .quick-action-btn:hover {

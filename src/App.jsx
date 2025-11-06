@@ -17,6 +17,7 @@ import Tips from './pages/Tips';
 import Recipes from './pages/Recipes';
 import Timeline from './pages/Timeline';
 import Settings from './pages/Settings';
+import Reminders from './pages/Reminders';
 
 // For UI-first workflow: skip authentication gating for now and open main UI directly
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path="milestones" element={<Milestones />} />
         <Route path="activities" element={<Activities />} />
         <Route path="photos" element={<Photos />} />
+  <Route path="reminders" element={<Reminders />} />
         <Route path="mother-health" element={<MotherHealth />} />
         <Route path="breastfeeding" element={<Breastfeeding />} />
         <Route path="education" element={<Education />} />

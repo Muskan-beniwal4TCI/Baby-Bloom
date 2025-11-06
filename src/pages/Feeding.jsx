@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import FeedingTimer from '../components/FeedingTimer';
 import FeedingAnalytics from '../components/FeedingAnalytics';
 import FeedingReminder from '../components/FeedingReminder';
@@ -10,6 +11,7 @@ import '../styles/pages.css';
 import './Feeding.css';
 
 const Feeding = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [activeFilter, setActiveFilter] = useState('all');
   const [feedings, setFeedings] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,36 +39,6 @@ const Feeding = () => {
     const savedFeedings = localStorage.getItem('baby-bloom-feedings');
     if (savedFeedings) {
       setFeedings(JSON.parse(savedFeedings));
-    } else {
-      // Set sample data for first time
-      const sampleFeedings = [
-        {
-          id: Date.now() - 7200000,
-          type: 'bottle',
-          amount: 180,
-          duration: 15,
-          foodType: 'formula',
-          notes: 'Formula',
-          timestamp: new Date(Date.now() - 7200000).toISOString()
-        },
-        {
-          id: Date.now() - 18000000,
-          type: 'solid',
-          amount: 50,
-          details: 'Mashed carrots',
-          notes: 'Loved it!',
-          timestamp: new Date(Date.now() - 18000000).toISOString()
-        },
-        {
-          id: Date.now() - 25200000,
-          type: 'breast',
-          duration: 20,
-          side: 'both',
-          timestamp: new Date(Date.now() - 25200000).toISOString()
-        }
-      ];
-      setFeedings(sampleFeedings);
-      localStorage.setItem('baby-bloom-feedings', JSON.stringify(sampleFeedings));
     }
   }, []);
 
@@ -76,6 +48,15 @@ const Feeding = () => {
       localStorage.setItem('baby-bloom-feedings', JSON.stringify(feedings));
     }
   }, [feedings]);
+
+  // Auto-open modal if 'add' parameter is present
+  useEffect(() => {
+    if (searchParams.get('add') === 'true') {
+      openModal();
+      // Remove the parameter after opening
+      setSearchParams({});
+    }
+  }, [searchParams]);
 
   const openModal = (feeding = null) => {
     if (feeding) {
@@ -300,7 +281,25 @@ const Feeding = () => {
               <div className="empty-state">
                 <div className="empty-icon">🍼</div>
                 <h3>No feedings logged yet</h3>
-                <p>Start tracking by clicking "Log Feeding" above</p>
+                <p>Start tracking your baby's feeding journey!</p>
+                <div className="empty-tips">
+                  <div className="empty-tip">
+                    <span>💡</span>
+                    <span>Track bottle, breast, and solid foods</span>
+                  </div>
+                  <div className="empty-tip">
+                    <span>📊</span>
+                    <span>See patterns and analytics</span>
+                  </div>
+                  <div className="empty-tip">
+                    <span>⏰</span>
+                    <span>Set reminders for next feeding</span>
+                  </div>
+                </div>
+                <button className="btn btn-primary btn-large" onClick={() => openModal()}>
+                  <span>➕</span>
+                  <span>Log Your First Feeding</span>
+                </button>
               </div>
             ) : (
               filteredFeedings.map((feeding) => (
