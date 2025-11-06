@@ -113,7 +113,7 @@ const Feeding = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const feedingData = {
       id: editingFeeding ? editingFeeding.id : Date.now(),
       type: formData.type,
@@ -163,7 +163,7 @@ const Feeding = () => {
   const calculateStats = () => {
     const todayFeedings = getTodayFeedings();
     const totalAmount = todayFeedings.reduce((sum, f) => sum + (f.amount || 0), 0);
-    
+
     let lastFed = 'No feedings today';
     if (todayFeedings.length > 0) {
       const sorted = [...todayFeedings].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
@@ -192,7 +192,7 @@ const Feeding = () => {
 
   const getTimeAgo = (date) => {
     const seconds = Math.floor((new Date() - date) / 1000);
-    
+
     if (seconds < 60) return 'Just now';
     const minutes = Math.floor(seconds / 60);
     if (minutes < 60) return `${minutes} min ago`;
@@ -269,25 +269,25 @@ const Feeding = () => {
       <div className="content-grid">
         <div className="feeding-log">
           <div className="log-filters">
-            <button 
+            <button
               className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
               onClick={() => setActiveFilter('all')}
             >
               All
             </button>
-            <button 
+            <button
               className={`filter-btn ${activeFilter === 'bottle' ? 'active' : ''}`}
               onClick={() => setActiveFilter('bottle')}
             >
               🍼 Bottle
             </button>
-            <button 
+            <button
               className={`filter-btn ${activeFilter === 'breast' ? 'active' : ''}`}
               onClick={() => setActiveFilter('breast')}
             >
               🤱 Breast
             </button>
-            <button 
+            <button
               className={`filter-btn ${activeFilter === 'solid' ? 'active' : ''}`}
               onClick={() => setActiveFilter('solid')}
             >
@@ -351,14 +351,14 @@ const Feeding = () => {
                     )}
                   </div>
                   <div className="log-entry-actions">
-                    <button 
+                    <button
                       className="action-btn edit-btn"
                       onClick={() => openModal(feeding)}
                       title="Edit"
                     >
                       ✏️
                     </button>
-                    <button 
+                    <button
                       className="action-btn delete-btn"
                       onClick={() => handleDelete(feeding.id)}
                       title="Delete"
@@ -406,19 +406,7 @@ const Feeding = () => {
             </p>
           </div>
 
-          <div className="info-card">
-            <div className="info-card-title">
-              <span>🥘</span>
-              <span>Meal Ideas</span>
-            </div>
-            <div style={{ fontSize: 'var(--font-size-sm)', lineHeight: 1.8 }}>
-              <div style={{ marginBottom: 'var(--spacing-sm)' }}>• Mashed sweet potato</div>
-              <div style={{ marginBottom: 'var(--spacing-sm)' }}>• Avocado puree</div>
-              <div style={{ marginBottom: 'var(--spacing-sm)' }}>• Soft cooked vegetables</div>
-              <div style={{ marginBottom: 'var(--spacing-sm)' }}>• Oatmeal with fruit</div>
-              <div>• Yogurt (whole milk)</div>
-            </div>
-          </div>
+          {/* Meal Ideas card removed as requested */}
         </div>
       </div>
 
@@ -586,7 +574,7 @@ const Feeding = () => {
 
       {/* Timer Modal */}
       {isTimerOpen && (
-        <FeedingTimer 
+        <FeedingTimer
           onComplete={handleTimerComplete}
           onClose={() => setIsTimerOpen(false)}
         />
@@ -594,7 +582,7 @@ const Feeding = () => {
 
       {/* Analytics Modal */}
       {isAnalyticsOpen && (
-        <FeedingAnalytics 
+        <FeedingAnalytics
           feedings={feedings}
           onClose={() => setIsAnalyticsOpen(false)}
         />
@@ -602,7 +590,7 @@ const Feeding = () => {
 
       {/* Reminder Modal */}
       {isReminderOpen && (
-        <FeedingReminder 
+        <FeedingReminder
           feedings={feedings}
           onClose={() => setIsReminderOpen(false)}
         />
@@ -610,7 +598,7 @@ const Feeding = () => {
 
       {/* Export Modal */}
       {isExportOpen && (
-        <FeedingExport 
+        <FeedingExport
           feedings={feedings}
           onClose={() => setIsExportOpen(false)}
         />
@@ -618,7 +606,7 @@ const Feeding = () => {
 
       {/* Advanced Analytics Modal */}
       {isAdvancedAnalyticsOpen && (
-        <FeedingAdvancedAnalytics 
+        <FeedingAdvancedAnalytics
           feedings={feedings}
           onClose={() => setIsAdvancedAnalyticsOpen(false)}
         />
@@ -626,7 +614,7 @@ const Feeding = () => {
 
       {/* Calendar Modal */}
       {isCalendarOpen && (
-        <FeedingCalendar 
+        <FeedingCalendar
           feedings={feedings}
           onClose={() => setIsCalendarOpen(false)}
         />
@@ -634,7 +622,7 @@ const Feeding = () => {
 
       {/* Goals Modal */}
       {isGoalsOpen && (
-        <FeedingGoals 
+        <FeedingGoals
           feedings={feedings}
           onClose={() => setIsGoalsOpen(false)}
         />

@@ -27,19 +27,35 @@ const TopBar = ({ onMenuClick }) => {
               </linearGradient>
             </defs>
             <circle cx="18" cy="18" r="17" fill="url(#appLogoGradient)" />
+            {/* Face shape */}
+            <circle cx="18" cy="18" r="12" fill="var(--surface)" />
+            {/* Eyes */}
+            <circle cx="14" cy="16" r="1.5" fill="var(--primary)" />
+            <circle cx="22" cy="16" r="1.5" fill="var(--primary)" />
+            {/* Rosy cheeks */}
+            <circle cx="13" cy="19" r="1.5" fill="var(--accent)" opacity="0.3" />
+            <circle cx="23" cy="19" r="1.5" fill="var(--accent)" opacity="0.3" />
+            {/* Smile */}
             <path
-              d="M18 23.8l-5.6-5.4c-1.5-1.5-1.5-3.9 0-5.4 1.5-1.5 3.8-1.5 5.3 0 .3.3.6.8.8 1.2.2-.4.5-.9.8-1.2 1.5-1.5 3.8-1.5 5.3 0 1.5 1.5 1.5 3.9 0 5.4L18 23.8z"
-              fill="var(--surface)"
+              d="M14 20.5c2 2 6 2 8 0"
+              stroke="var(--primary)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              fill="none"
             />
-            <circle cx="12.5" cy="12.2" r="1.4" fill="var(--accent)" opacity="0.7" />
-            <circle cx="23.8" cy="12.6" r="1" fill="var(--secondary-light)" opacity="0.5" />
           </svg>
           <h1 className="app-name">Baby Bloom</h1>
         </div>
       </div>
 
       <div className="topbar-right">
-        <img src={tricolorLogo} alt="Tricolor Initiatives" className="company-logo" />
+        <a
+          href="https://itservices.tricolorinitiatives.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={tricolorLogo} alt="Tricolor Initiatives" className="company-logo" />
+        </a>
       </div>
     </header>
   );

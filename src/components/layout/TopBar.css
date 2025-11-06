@@ -44,9 +44,19 @@
   width: auto;
   object-fit: contain;
   display: block;
-  /* Ensure proper display */
   max-width: 200px;
-  /* Prevent too large width */
+  transition: transform var(--transition-fast);
+}
+
+.topbar-right a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.topbar-right a:hover .company-logo {
+  transform: scale(1.05);
 }
 
 .topbar-menu-btn {
